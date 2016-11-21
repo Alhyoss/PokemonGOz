@@ -1,9 +1,10 @@
 %====INFORMATION====%
 % LFSAB1402 Projet 2016
 % Nomas : 34261300-NOMA2
-% Noms : (Lardinois,Simon)-(Harper,Igor)
+% Noms : (Lardinois,Simon)-(Nom2,Prenom2)
 %====MODULELINK====%
 declare
+{Property.put 'MyDir' '/home/simon/University/LFSAB1402/Projet/'} %% TODO ajoutez cette ligne si les images ne s'affichent pas et remplacez ./ par le chemin vers le dossier des images
 [Projet]={Module.link ["/home/simon/University/LFSAB1402/Projet/Projet2016.ozf"]}
 
 %====CODE====%
@@ -20,40 +21,71 @@ local
 		    withCheckMapComplete:false
 		   )
 in
-   Map = map(ru: %% Real Universe %%
-	     translate(
-		dx: 100
-		dy: 100
-		1:
-		   scale(
-		      rx: 100
-		      ry: 100
-		      1:
-			 primitive(kind: water)
-		      |nil
-		      )
-		|nil
-		)
-	     |nil
+   Map = map(ru:nil
 
-	     pu: %% Pokemon Universe %%
-	     translate(
-		dx: 200
-		dy: 200
-		1:
-		   primitive(kind: pokemon)
-		|nil
-		)
+	     pu:
+		translate(
+		   dx: 250.0
+		   dy: 250.0
+		   1:
+		      primitive(kind: pokestop)
+		   |nil
+		   )
 	     |nil
 	    )
 
    fun{MyFunction Map}
-      nil %% TODO complete your function here
+      local
+	 fun{MakeItemFun Item P1 P2 P3 P4}
+	    case Item
+	    of translate(dx:DX dy:DY 1:NextItem) then
+	       {MakeItemFun NextItem pt(x:P1.x+DX y:P1.y+DY)
+		                     pt(x:P2.x+DX y:P2.y+DY)
+		                     pt(x:P3.x+DX y:P3.y+DY)
+		                     pt(x:P4.x+DX y:P4.y+DY)}
+	    [] scale(rx:RX ry:RY 1:NextItem) then
+	       {MakeItemFun NextItem pt(x:P1.x*RX y:P1.y*RY)
+		                     pt(x:P2.x*RX y:P2.y*RY)
+		                     pt(x:P3.x*RX y:P3.y*RY)
+		                     pt(x:P4.x*RX y:P4.y*RY)}
+	    [] rotate(angle:Angle 1:NextItem) then
+	       {MakeItemFun NextItem pt(x:P1.x*cos(Angle)+P1.y*sin(Angle) y:P1.y*cos(Angle)-P1.x*sin(Angle))
+		                     pt(x:P2.x*cos(Angle)+P2.y*sin(Angle) y:P2.y*cos(Angle)-P2.x*sin(Angle))
+		                     pt(x:P3.x*cos(Angle)+P3.y*sin(Angle) y:P3.y*cos(Angle)-P3.x*sin(Angle))
+		                     pt(x:P4.x*cos(Angle)+P4.y*sin(Angle) y:P4.y*cos(Angle)-P4.x*sin(Angle))}
+	    [] primitive(kind:Kind) then
+	       fun{$ Time}
+		  if Kind == water orelse Kind == building then
+		     realitem(kind:Kind p1:P1 p2:P2 p3:P3 p4:P4)
+		  elseif Kind == road then
+		     realitem(kind:Kind p1:P1 p2:P3)
+		  else
+		     pokeitem(kind:Kind p1:P1)
+		  end
+	       end
+	    end
+	 end
+	 
+	 fun{MakeFunL RU PU}
+	    case RU
+	    of nil then
+	       case PU
+	       of nil then nil
+	       [] H|T then
+		  {MakeItemFun H pt(x:0 y:0) pt(x:0 y:1) pt(x:1 y:1) pt(x:1 y:0)}|{MakeFunL RU T}
+	       end
+	    [] H|T then
+	       {MakeItemFun H pt(x:0 y:0) pt(x:0 y:1) pt(x:1 y:1) pt(x:1 y:0)}|{MakeFunL T PU}
+	    end
+	 end
+      in
+	 {MakeFunL Map.ru Map.pu}
+      end
    end
 
    fun{CheckMap Map}
       false %% TODO complete here the function for the checking of the maps
    end
-
+   
    {Projet.run MyFunction Map MaxTime Extensions CheckMap}
 end
