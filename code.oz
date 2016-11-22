@@ -22,20 +22,272 @@ local
 		   )
 in
    Map = map(ru:
+		%% WATER %%
 		scale(
 		   rx: 100.0
 		   ry: 100.0
-		   1:
-		      translate(
-			 dx: 100.0
-			 dy: 100.0
-			 1:
-			    primitive(kind: water)
-			 |nil
-			 )
-		   |primitive(kind: building)
-		   |nil
-		   )
+		   1: translate(
+			 dx: 200.0
+			 dy: 200.0
+			 1: primitive(kind: water)
+			 |nil)
+		   |nil)
+	     %% P %%
+	     |scale(
+		 rx: 10.0
+		 ry: 140.0
+		 1: translate(
+		       dx: 0.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 10.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 10.0
+		 ry: 50.0
+		 1: translate(
+		       dx: 60.0
+		       dy: 20.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 10.0
+		       dy: 70.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     %% O %%
+	     |scale(
+		 rx: 10.0
+		 ry: 120.0
+		 1: translate(
+		       dx: 80.0
+		       dy: 20.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 80.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 10.0
+		 ry: 120.0
+		 1: translate(
+		       dx: 120.0
+		       dy: 20.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 80.0
+		       dy: 140.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     %% K %%
+	     |scale(
+		 rx: 10.0
+		 ry: 140.0
+		 1: translate(
+		       dx: 140.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 76.267
+		 ry: 10.0
+		 1: rotate(
+		       angle: 60.0
+		       1: translate(
+			     dx: 150.0
+			     dy: 77.5
+			     1: primitive(kind: building)
+			     |nil)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 76.267
+		 ry: 10.0
+		 1: rotate(
+		       angle: ~60.0
+		       1: translate(
+			     dx: 160.0
+			     dy: 82.5
+			     1: primitive(kind: building)
+			     |nil)
+		       |nil)
+		 |nil)
+	     %% E %%
+	     |scale(
+		 rx: 10.0
+		 ry: 140.0
+		 1: translate(
+		       dx: 210.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 220.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 220.0
+		       dy: 75.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 220.0
+		       dy: 140.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     %% M %%
+	     |scale(
+		 rx: 10.0
+		 ry: 140.0
+		 1: translate(
+		       dx: 280.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 90.0
+		 ry: 10.0
+		 1: rotate(
+		       angle: ~70.0
+		       1: translate(
+			     dx: 297.26
+			     dy: 10.0
+			     1: primitive(kind: building)
+			     |nil)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 90.0
+		 ry: 10.0
+		 1: rotate(
+		       angle: 70.0
+		       1: translate(
+			     dx: 322.26
+			     dy: 95.0
+			     1: primitive(kind: building)
+			     |nil)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 10.0
+		 ry: 140.0
+		 1: translate(
+		       dx: 357.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     %% O %%
+	     |scale(
+		 rx: 10.0
+		 ry: 120.0
+		 1: translate(
+		       dx: 377.0
+		       dy: 20.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 377.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 10.0
+		 ry: 120.0
+		 1: translate(
+		       dx: 417.0
+		       dy: 20.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 377.0
+		       dy: 140.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     %% N %
+	     |scale(
+		 rx: 10.0
+		 ry: 140.0
+		 1: translate(
+		       dx: 437.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 142.5
+		 ry: 10.0
+		 1: rotate(
+		       angle: ~75.0
+		       1: translate(
+			     dx: 455.0
+			     dy: 10.0
+			     1: primitive(kind: building)
+			     |nil)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 10.0
+		 ry: 140.0
+		 1: translate(
+		       dx: 490.0
+		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
 	     |nil
 
 	     pu:
@@ -66,11 +318,15 @@ in
 		                     pt(x:P4.x*RX y:P4.y*RY)}
 	       |{MakeItemFun T P1 P2 P3 P4}
 	    [] rotate(angle:Angle 1:NextItem)|T then
-	       {MakeItemFun NextItem pt(x:P1.x*cos(Angle)+P1.y*sin(Angle) y:P1.y*cos(Angle)-P1.x*sin(Angle))
-		                     pt(x:P2.x*cos(Angle)+P2.y*sin(Angle) y:P2.y*cos(Angle)-P2.x*sin(Angle))
-		                     pt(x:P3.x*cos(Angle)+P3.y*sin(Angle) y:P3.y*cos(Angle)-P3.x*sin(Angle))
-		                     pt(x:P4.x*cos(Angle)+P4.y*sin(Angle) y:P4.y*cos(Angle)-P4.x*sin(Angle))}
-	       |{MakeItemFun T P1 P2 P3 P4}
+	       local Cosinus Sinus in
+		  Cosinus = {Cos (Angle/180.0)*3.1415}
+		  Sinus = {Sin (Angle/180.0)*3.1415}
+		  {MakeItemFun NextItem pt(x:P1.x*Cosinus+P1.y*Sinus y:P1.y*Cosinus-P1.x*Sinus)
+		                        pt(x:P2.x*Cosinus+P2.y*Sinus y:P2.y*Cosinus-P2.x*Sinus)
+		                        pt(x:P3.x*Cosinus+P3.y*Sinus y:P3.y*Cosinus-P3.x*Sinus)
+		                        pt(x:P4.x*Cosinus+P4.y*Sinus y:P4.y*Cosinus-P4.x*Sinus)}
+		  |{MakeItemFun T P1 P2 P3 P4}
+	       end
 	    [] primitive(kind:Kind)|T then
 	       fun{$ Time}
 		  if Kind == water orelse Kind == building then
