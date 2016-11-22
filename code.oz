@@ -30,7 +30,7 @@ in
 			 dx: 100.0
 			 dy: 100.0
 			 1:
-			    primitive(kind: road)
+			    primitive(kind: water)
 			 |nil
 			 )
 		   |primitive(kind: building)
@@ -43,7 +43,7 @@ in
 		   dx: 250.0
 		   dy: 250.0
 		   1:
-		      primitive(kind: pokestop)
+		      primitive(kind: pokemon)
 		   |nil
 		   )
 	     |nil
@@ -53,52 +53,25 @@ in
       local
 	 fun{MakeItemFun Item P1 P2 P3 P4}
 	    case Item
-	    of translate(dx:DX dy:DY 1:NextItem)|nil then
-	       {Browse 'translate|nil'}
-	       {MakeItemFun NextItem pt(x:P1.x+DX y:P1.y+DY)
-		                     pt(x:P2.x+DX y:P2.y+DY)
-		                     pt(x:P3.x+DX y:P3.y+DY)
-		                     pt(x:P4.x+DX y:P4.y+DY)}
-	    [] translate(dx:DX dy:DY 1:NextItem)|T then
-	       {Browse 'translate|T'}
+	    of translate(dx:DX dy:DY 1:NextItem)|T then
 	       {MakeItemFun NextItem pt(x:P1.x+DX y:P1.y+DY)
 		                     pt(x:P2.x+DX y:P2.y+DY)
 		                     pt(x:P3.x+DX y:P3.y+DY)
 		                     pt(x:P4.x+DX y:P4.y+DY)}
 	       |{MakeItemFun T P1 P2 P3 P4}
-	    [] scale(rx:RX ry:RY 1:NextItem)|nil then
-	       {Browse 'scale|nil'}
-	       {MakeItemFun NextItem pt(x:P1.x*RX y:P1.y*RY)
-		                     pt(x:P2.x*RX y:P2.y*RY)
-		                     pt(x:P3.x*RX y:P3.y*RY)
-		                     pt(x:P4.x*RX y:P4.y*RY)}
 	    [] scale(rx:RX ry:RY 1:NextItem)|T then
-	       {Browse 'scale|T'}
 	       {MakeItemFun NextItem pt(x:P1.x*RX y:P1.y*RY)
 		                     pt(x:P2.x*RX y:P2.y*RY)
 		                     pt(x:P3.x*RX y:P3.y*RY)
 		                     pt(x:P4.x*RX y:P4.y*RY)}
 	       |{MakeItemFun T P1 P2 P3 P4}
-	    [] rotate(angle:Angle 1:NextItem)|nil then
-	       {Browse 'rotate|nil'}
-	       {MakeItemFun NextItem pt(x:P1.x*cos(Angle)+P1.y*sin(Angle) y:P1.y*cos(Angle)-P1.x*sin(Angle))
-		                     pt(x:P2.x*cos(Angle)+P2.y*sin(Angle) y:P2.y*cos(Angle)-P2.x*sin(Angle))
-		                     pt(x:P3.x*cos(Angle)+P3.y*sin(Angle) y:P3.y*cos(Angle)-P3.x*sin(Angle))
-		                     pt(x:P4.x*cos(Angle)+P4.y*sin(Angle) y:P4.y*cos(Angle)-P4.x*sin(Angle))}
 	    [] rotate(angle:Angle 1:NextItem)|T then
-	       {Browse 'rotate|T'}
 	       {MakeItemFun NextItem pt(x:P1.x*cos(Angle)+P1.y*sin(Angle) y:P1.y*cos(Angle)-P1.x*sin(Angle))
 		                     pt(x:P2.x*cos(Angle)+P2.y*sin(Angle) y:P2.y*cos(Angle)-P2.x*sin(Angle))
 		                     pt(x:P3.x*cos(Angle)+P3.y*sin(Angle) y:P3.y*cos(Angle)-P3.x*sin(Angle))
 		                     pt(x:P4.x*cos(Angle)+P4.y*sin(Angle) y:P4.y*cos(Angle)-P4.x*sin(Angle))}
 	       |{MakeItemFun T P1 P2 P3 P4}
-	    [] primitive(kind:Kind)|nil then
-	       {Browse 'primitive|nil'}
-	       {Browse Kind}
-	       {Browse P1}
-	       {Browse P2}
-	       {Browse P3}
-	       {Browse P4}
+	    [] primitive(kind:Kind)|T then
 	       fun{$ Time}
 		  if Kind == water orelse Kind == building then
 		     realitem(kind:Kind p1:P1 p2:P2 p3:P3 p4:P4)
@@ -108,18 +81,8 @@ in
 		     pokeitem(kind:Kind position:P1)
 		  end
 	       end
-	    [] primitive(kind:Kind)|T then
-	       {Browse 'primitive|T'}
-	       {Browse Kind}
-	       fun{$ Time}
-		  if Kind == water orelse Kind == building then
-		     realitem(kind:Kind p1:P1 p2:P2 p3:P3 p4:P4)|{MakeItemFun T P1 P2 P3 P4}
-		  elseif Kind == road then
-		     realitem(kind:Kind p1:P1 p2:P4)|{MakeItemFun T P1 P2 P3 P4}
-		  else
-		     pokeitem(kind:Kind position:P1)|{MakeItemFun T P1 P2 P3 P4}
-		  end
-	       end
+	       |{MakeItemFun T P1 P2 P3 P4}
+	    [] nil then nil
 	    end
 	 end
 	 
@@ -136,7 +99,7 @@ in
 	    end
 	 end
       in
-	 {MakeFunL Map.ru Map.pu}
+	 {Flatten {MakeFunL Map.ru Map.pu}}
       end
    end
 
