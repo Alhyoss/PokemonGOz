@@ -13,7 +13,7 @@ local
    MyFunction
    Map
    CheckMap
-   Extensions = opt(withExtendedFormula:false
+   Extensions = opt(withExtendedFormula:true
 		    withIfThenElse:false
 		    withComparison:false
 		    withTimeWindow:false
@@ -285,6 +285,121 @@ in
 		 1: translate(
 		       dx: 490.0
 		       dy: 10.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+
+	     %% G %%
+	     |scale(
+		 rx: 10.0
+		 ry: 120.0
+		 1: translate(
+		       dx: 135.5
+		       dy: 360.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 70.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 135.5
+		       dy: 350.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 70.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 135.5
+		       dy: 480.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 10.0
+		 ry: 50.0
+		 1: translate(
+		       dx: 195.5
+		       dy: 430.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 40.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 165.5
+		       dy: 420.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     %% O %%
+	     |scale(
+		 rx: 10.0
+		 ry: 120.0
+		 1: translate(
+		       dx: 215.5
+		       dy: 360.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 225.5
+		       dy: 350.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 10.0
+		 ry: 120.0
+		 1: translate(
+		       dx: 275.5
+		       dy: 360.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 50.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 225.5
+		       dy: 480.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     %% Z %%
+	     |scale(
+		 rx: 70.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 295.5
+		       dy: 350.0
+		       1: primitive(kind: building)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 130.0
+		 ry: 10.0
+		 1: rotate(
+		       angle: 62.0
+		       1: translate(
+			     dx: 295.5
+			     dy: 475.0
+			     1: primitive(kind: building)
+			     |nil)
+		       |nil)
+		 |nil)
+	     |scale(
+		 rx: 70.0
+		 ry: 10.0
+		 1: translate(
+		       dx: 295.5
+		       dy: 480.0
 		       1: primitive(kind: building)
 		       |nil)
 		 |nil)
