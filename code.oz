@@ -303,24 +303,51 @@ in
 
    fun{MyFunction Map}
       local
+	 fun{Evaluate Expr}
+	    if {Float.is Expr} then
+	       Expr
+	    else
+	       case Expr
+	       of plus(X Y) then {Evaluate X}+{Evaluate Y}
+	       [] minus(X Y) then {Evaluate X}-{Evaluate Y}
+	       [] mult(X Y) then {Evaluate X}*{Evaluate Y}
+	       [] 'div'(X Y) then ({Evaluate X} div{Evaluate Y})
+	       [] cos(X) then {Float.cos {Evaluate X}/180.0*3.1415}
+	       [] sin(X) then {Float.sin {Evaluate X}/180.0*3.1415}
+	       [] tan(X) then {Float.tan {Evaluate X}/180.0*3.1415}
+	       [] exp(X) then {Float.exp X}
+	       [] log(X) then {Float.log X}
+	       [] neg(X) then ~{Evaluate X}
+	       end
+	    end
+	 end
+	 
 	 fun{MakeItemFun Item P1 P2 P3 P4}
 	    case Item
-	    of translate(dx:DX dy:DY 1:NextItem)|T then
-	       {MakeItemFun NextItem pt(x:P1.x+DX y:P1.y+DY)
-		                     pt(x:P2.x+DX y:P2.y+DY)
-		                     pt(x:P3.x+DX y:P3.y+DY)
-		                     pt(x:P4.x+DX y:P4.y+DY)}
-	       |{MakeItemFun T P1 P2 P3 P4}
-	    [] scale(rx:RX ry:RY 1:NextItem)|T then
-	       {MakeItemFun NextItem pt(x:P1.x*RX y:P1.y*RY)
-		                     pt(x:P2.x*RX y:P2.y*RY)
-		                     pt(x:P3.x*RX y:P3.y*RY)
-		                     pt(x:P4.x*RX y:P4.y*RY)}
-	       |{MakeItemFun T P1 P2 P3 P4}
+	    of translate(dx:X dy:Y 1:NextItem)|T then
+	       local DX DY in
+		  DX = {Evaluate X}
+		  DY = {Evaluate Y}
+		  {MakeItemFun NextItem pt(x:P1.x+DX y:P1.y+DY)
+		                        pt(x:P2.x+DX y:P2.y+DY)
+		                        pt(x:P3.x+DX y:P3.y+DY)
+		                        pt(x:P4.x+DX y:P4.y+DY)}
+		  |{MakeItemFun T P1 P2 P3 P4}
+	       end
+	    [] scale(rx:X ry:Y 1:NextItem)|T then
+	       local RX RY in
+		  RX = {Evaluate X}
+		  RY = {Evaluate Y}
+		  {MakeItemFun NextItem pt(x:P1.x*RX y:P1.y*RY)
+		                        pt(x:P2.x*RX y:P2.y*RY)
+		                        pt(x:P3.x*RX y:P3.y*RY)
+		                        pt(x:P4.x*RX y:P4.y*RY)}
+		  |{MakeItemFun T P1 P2 P3 P4}
+	       end
 	    [] rotate(angle:Angle 1:NextItem)|T then
 	       local Cosinus Sinus in
-		  Cosinus = {Cos (Angle/180.0)*3.1415}
-		  Sinus = {Sin (Angle/180.0)*3.1415}
+		  Cosinus = {Evaluate cos(Angle)}
+		  Sinus = {Evaluate sin(Angle)}
 		  {MakeItemFun NextItem pt(x:P1.x*Cosinus+P1.y*Sinus y:P1.y*Cosinus-P1.x*Sinus)
 		                        pt(x:P2.x*Cosinus+P2.y*Sinus y:P2.y*Cosinus-P2.x*Sinus)
 		                        pt(x:P3.x*Cosinus+P3.y*Sinus y:P3.y*Cosinus-P3.x*Sinus)
