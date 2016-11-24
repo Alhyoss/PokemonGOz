@@ -14,7 +14,7 @@ local
    Map
    CheckMap
    Extensions = opt(withExtendedFormula:true
-		    withIfThenElse:false
+		    withIfThenElse:true
 		    withComparison:false
 		    withTimeWindow:true
 		    withCheckMapEasy:false
@@ -440,6 +440,12 @@ in
 	       [] exp(X) then {Float.exp X}
 	       [] log(X) then {Float.log X}
 	       [] neg(X) then ~{Evaluate X}
+	       [] ite(X Y Z) then
+		  if {Evaluate X} == 0.0 then
+		     {Evaluate Z}
+		  else
+		     {Evaluate Y}
+		  end
 	       end
 	    end
 	 end
@@ -546,7 +552,47 @@ in
    end
 
    fun{CheckMap Map}
-      false %% TODO complete here the function for the checking of the maps
+      local
+	 fun{Evaluate Expr}
+	    if {Float.is Expr} then
+	       true
+	    else
+	       case Expr
+	       of plus(X Y) then
+		  if {Evaluate X} andthen {Evaluate Y} then true else false end
+		  
+	       [] minus(X Y) then
+		  if {Evaluate X} andthen {Evaluate Y} then true else false end 
+		  
+	       [] mult(X Y) then
+		  if {Evaluate X} andthen {Evaluate Y} then true else false end
+		  
+	       [] 'div'(X Y) then
+		  if ({Evaluate X} andthen {Evaluate Y}) then true else false end
+		  
+	       [] cos(X) then
+		  if {Evaluate X} then true else false end
+		  
+	       [] sin(X) then
+		  if {Evaluate X} then true else false end
+		  
+	       [] tan(X) then
+		  if {Evaluate X} then true else false end
+		  
+	       [] exp(X) then
+		  if {Evaluate X} then true else false end
+		  
+	       [] log(X) then
+		  if {Evaluate X}then true else false end
+		  
+	       [] neg(X) then
+		  if {Evaluate X} then true else false end
+	       else false
+	       end
+	    end
+	 end
+      in {Browse 2}
+      end
    end
    
    {Projet.run MyFunction Map MaxTime Extensions CheckMap}
