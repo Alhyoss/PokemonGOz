@@ -521,7 +521,7 @@ in
 	 {Flatten {MakeItemFun Map.ru nil}|{MakeItemFun Map.pu nil}|nil nil}
       end
    end
-   
+
    fun{CheckMap Map}
       local
 	 %
@@ -586,12 +586,12 @@ in
 	       [] log(X) then {Evaluate X IsPU}
 	       [] neg(X) then {Evaluate X IsPU}
 	       [] ite(X Y Z) then {Evaluate X IsPU} andthen {Evaluate Y IsPU} andthen {Evaluate Z IsPU}
-	       [] eq(X Y) then {Evaluate X IsPU} andthen {Evaluate Y IsPU}
-	       [] ne(X Y) then {Evaluate X IsPU} andthen {Evaluate Y IsPU}
-	       [] lt(X Y) then {Evaluate X IsPU} andthen {Evaluate Y IsPU}
-	       [] le(X Y) then {Evaluate X IsPU} andthen {Evaluate Y IsPU}
-	       [] gt(X Y) then {Evaluate X IsPU} andthen {Evaluate Y IsPU}
-	       [] ge(X Y) then {Evaluate X IsPU} andthen {Evaluate Y IsPU}
+	       [] eq(X Y) then IsPU andthen {Evaluate X IsPU} andthen {Evaluate Y IsPU}
+	       [] ne(X Y) then IsPU andthen {Evaluate X IsPU} andthen {Evaluate Y IsPU}
+	       [] lt(X Y) then IsPU andthen {Evaluate X IsPU} andthen {Evaluate Y IsPU}
+	       [] le(X Y) then IsPU andthen {Evaluate X IsPU} andthen {Evaluate Y IsPU}
+	       [] gt(X Y) then IsPU andthen {Evaluate X IsPU} andthen {Evaluate Y IsPU}
+	       [] ge(X Y) then IsPU andthen {Evaluate X IsPU} andthen {Evaluate Y IsPU}
 	       else false
 	       end
 	    end
@@ -604,6 +604,6 @@ in
 	 end
       end
    end
-   
+
    {Projet.run MyFunction Map MaxTime Extensions CheckMap}
 end
